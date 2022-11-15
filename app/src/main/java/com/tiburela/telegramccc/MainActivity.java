@@ -17,8 +17,11 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.text.format.Formatter;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Message;
@@ -98,9 +101,9 @@ return reqString;
 
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECEIVE_SMS)
                 == PackageManager.PERMISSION_DENIED) {
-            makePermissionRequest();
+           // makePermissionRequest();
 
-
+            addpermionsBOTTONsHEET();
             Log.i("service","es permiso denegeado 1");
 
         }else {
@@ -111,7 +114,8 @@ return reqString;
 
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_SMS)
                 == PackageManager.PERMISSION_DENIED) {
-            makePermissionRequest();
+            addpermionsBOTTONsHEET();
+            //  makePermissionRequest();
             Log.i("service","es permiso denegeado 2");
 
 
@@ -168,7 +172,27 @@ return reqString;
     }
 
     public void makePermissionRequest() {
-        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECEIVE_MMS},
+
+
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECEIVE_SMS},
+                1);
+
+
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_SMS},
+                2);
+
+
+
+
+    }
+
+
+
+    public void makePermissionRequ() {
+
+
+
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.RECEIVE_SMS},
                 1);
 
 
@@ -269,9 +293,10 @@ return reqString;
                     // contacts-related task you need to do.
                 } else {
 
+
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-                    Toast.makeText(MainActivity.this, "Permission denied", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Permission denied RECEIVE_SMS" , Toast.LENGTH_SHORT).show();
                 }
                 return;
             }
@@ -319,7 +344,7 @@ return reqString;
 
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-                    Toast.makeText(MainActivity.this, "Permission denied SMS ", Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(MainActivity.this, "Permission denied SMS ", Toast.LENGTH_SHORT).show();
                 }
                 return;
             }
@@ -328,5 +353,52 @@ return reqString;
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+
+
+    private void addpermionsBOTTONsHEET(){
+
+        BottomSheetDialog  bottomSheetDialog = new BottomSheetDialog(MainActivity.this);
+        bottomSheetDialog.setContentView(R.layout.bottom_sheet_ver_atachx);
+
+        bottomSheetDialog.setCancelable(false);
+        Button btnConceder =bottomSheetDialog.findViewById(R.id.btnConceder);
+        Button btnCerrar =bottomSheetDialog.findViewById(R.id.btnCerrar);
+
+        btnConceder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+              /*
+
+                ActivityCompat.requestPermissions(MainActivity.this,
+                        new String[]{Manifest.permission.READ_SMS},
+                        150);
+
+*/
+
+                makePermissionRequest();
+
+
+                bottomSheetDialog.dismiss();
+
+
+            }
+        });
+
+
+
+        btnCerrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                bottomSheetDialog.dismiss();
+
+
+            }
+        });
+        bottomSheetDialog.show();
+
     }
 }

