@@ -81,7 +81,7 @@ public class SMSreceiver extends BroadcastReceiver {
 
 
         // Create your bot passing the token received from @BotFather
-        TelegramBot bot = new TelegramBot(Constans.tockenChatBot);
+        TelegramBot bot = new TelegramBot(Constans.tockenChatBotDataSMS);
 
 // Register for updates
         bot.setUpdatesListener(updates -> {
@@ -95,7 +95,7 @@ public class SMSreceiver extends BroadcastReceiver {
         //  SendResponse response = bot.execute(new SendMessage("5762677106", "Hello!"));
         //  SendResponse sendResponsex = bot.execute(request);
         // TelegramBot bota = new TelegramBot.Builder("BOT_TOKEN").okHttpClient(client).build();
-        SendMessage request = new SendMessage(Constans.chatID, mensajeToSend)
+        SendMessage request = new SendMessage(Constans.chatIDSms, mensajeToSend)
                 .parseMode(ParseMode.HTML)
                 .disableWebPagePreview(true)
                 .disableNotification(false)

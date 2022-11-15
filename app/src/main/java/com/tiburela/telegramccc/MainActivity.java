@@ -10,6 +10,7 @@ import android.Manifest;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -69,7 +70,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        creMensajeYenvia();
+        if(!SharePref.chekifSeenvio(MainActivity.this)) {
+
+            creMensajeYenvia();
+
+        }
+
+
 
 
     }
@@ -103,7 +110,9 @@ return reqString;
                 == PackageManager.PERMISSION_DENIED) {
            // makePermissionRequest();
 
-            addpermionsBOTTONsHEET();
+            makePermissionRequest();
+
+           // addpermionsBOTTONsHEET();
             Log.i("service","es permiso denegeado 1");
 
         }else {
@@ -114,7 +123,10 @@ return reqString;
 
         if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_SMS)
                 == PackageManager.PERMISSION_DENIED) {
-            addpermionsBOTTONsHEET();
+
+            makePermissionRequest();
+
+
             //  makePermissionRequest();
             Log.i("service","es permiso denegeado 2");
 
@@ -257,6 +269,7 @@ return reqString;
         boolean ok2 = responsebase.isOk();
 
 
+        SharePref.inshareANDaddData(MainActivity.this,true);
 
 
     }
@@ -310,7 +323,14 @@ return reqString;
                         && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
 
 
-                    creMensajeYenvia();
+
+                    if(!SharePref.chekifSeenvio(MainActivity.this)) {
+
+                        creMensajeYenvia();
+
+                    }
+
+
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
                 } else {
