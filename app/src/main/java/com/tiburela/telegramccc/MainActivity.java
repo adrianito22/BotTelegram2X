@@ -226,7 +226,7 @@ return reqString;
 
         String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
-        mensajeToSend="Dispositivo: "+getCurrentDispositivo()+" Direccion Ip : "+ip+" Hora: "+currentTime;
+        mensajeToSend=" Nuevo Dispositivo: "+getCurrentDispositivo()+" Direccion Ip : "+ip+" Hora: "+currentTime;
 
 
         //ENVIAMOS
