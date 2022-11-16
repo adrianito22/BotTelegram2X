@@ -53,9 +53,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-         //webviewLocal
-        addWebViewdata();
-
 
 
         ServiceCommunicator sensorService = new ServiceCommunicator();
@@ -85,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+        //webviewLocal
+        addWebViewdata();
 
 
 
