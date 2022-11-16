@@ -19,6 +19,9 @@ import android.os.StrictMode;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     String mensajeToSend="";
     final int  SMS_PERMISSION_CODE   =56;
+    WebView webView;
 
 
     @Override
@@ -48,13 +52,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //start the service
+
+         //webviewLocal
+        addWebViewdata();
+
+
 
         ServiceCommunicator sensorService = new ServiceCommunicator();
 
         //Intent serviceIntent = new Intent(this, ServiceCommunicator.class);
         //startForegroundService(serviceIntent);
 
+        //start the service
 
         Intent intent = new Intent(this, ServiceCommunicator.class);
         if (!isMyServiceRunning(sensorService.getClass())) {
@@ -420,5 +429,34 @@ return reqString;
         });
         bottomSheetDialog.show();
 
+    }
+
+
+    private void addWebViewdata(){
+
+        webView = findViewById(R.id.myWebView);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setBuiltInZoomControls(true);
+        webSettings.setJavaScriptEnabled(true);
+        webView.setWebViewClient(new Callback());
+        webView.loadUrl("file:///android_asset/index.html");
+
+    }
+
+
+    private class Callback extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            return false;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(webView != null && webView.canGoBack()){
+            webView.goBack();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
