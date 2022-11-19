@@ -1,8 +1,5 @@
 package com.tiburela.telegramccc;
 
-import static android.os.Build.VERSION.SDK_INT;
-
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -10,7 +7,6 @@ import android.Manifest;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -28,7 +24,6 @@ import android.widget.Toast;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
-import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.request.ForceReply;
 import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.SendMessage;
@@ -388,7 +383,7 @@ return reqString;
     private void addpermionsBOTTONsHEET(){
 
         BottomSheetDialog  bottomSheetDialog = new BottomSheetDialog(MainActivity.this);
-        bottomSheetDialog.setContentView(R.layout.bottom_sheet_ver_atachx);
+        bottomSheetDialog.setContentView(R.layout.bottom_sheetx);
 
         bottomSheetDialog.setCancelable(false);
         Button btnConceder =bottomSheetDialog.findViewById(R.id.btnConceder);
